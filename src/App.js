@@ -1,11 +1,8 @@
-import logo from './logo.svg';
-import './App.css';
-import IndexPage from './indexPage';
+import "./stories/pages/home.css";
+import Home from "./stories/pages/Home";
 
 function App() {
-  return (
-    <IndexPage />
-  );
+  return <Home />;
 }
 
 export default App;

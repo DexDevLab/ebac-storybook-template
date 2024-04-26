@@ -44,7 +44,7 @@
 }
 
 body {
-  background-color: #52AA5E;
+  background-color: #52aa5e;
   font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -60,7 +60,8 @@ main {
   background-color: #fff;
 }
 
-.pokemon-container, .create-card {
+.pokemon-container,
+.create-card {
   display: flex;
   align-items: center;
   justify-content: center;
