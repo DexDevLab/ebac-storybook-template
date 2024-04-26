@@ -215,6 +215,10 @@ Query Params:
 
 ## Notas de versão
 
+### v0.2.2-240426
+
+- Testes de implementação
+
 ### v0.2.1-240426
 
 - Testes de implementação
