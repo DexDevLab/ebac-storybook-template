@@ -29,14 +29,12 @@ jobs:
       - name: "📜 Printing package version"
         run: echo ${{ steps.get-package-version.outputs.version }}
 
+      - name: "⚙️ Install Dependencies"
+        if: ${{ !contains(steps.get-package-version.outputs.version, env.SUFFIX) }}
+        run: yarn install --immutable --immutable-cache --check-cache
+
       - name: "📖​ Chromatic Setup and Run"
         if: ${{ !contains(steps.get-package-version.outputs.version, env.SUFFIX) }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-          cache: "yarn"
-      - run: yarn
-      - uses: chromaui/action@v1
+        uses: chromaui/action@latest
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
-          token: ${{ secrets.GITHUB_TOKEN }}

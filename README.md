@@ -215,6 +215,11 @@ Query Params:
 
 ## Notas de versão
 
+### v0.2.1-240426
+
+- Testes de implementação
+- Alteração do script do Github Actions para automação de implementação no Chromatic
+
 ### v0.2.0-240426
 
 - Publicação do Repositório modificado
