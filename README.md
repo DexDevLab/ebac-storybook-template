@@ -72,6 +72,8 @@ Banco de Dados - Para a proposta deste projeto, não foi intencionada a utiliza�
 
 Backend local e Backend implementado - Toda vez que a aplicação estiver sendo executada em ambiente de desenvolvimento (`process.env.NODE_ENV`), a aplicação Frontend irá optar por se conectar ao Backend local, contido neste repositório e sendo executado por padrão na porta `4000`. Caso esta aplicação esteja sendo executada em um ambiente implementado, a mesma optará por realizar as requisições para uma implementação externa, cujos detalhes podem ser visualizados <a href="https://github.com/DexDevLab/ebac-storybook-template-backend" target="_blank">`neste`</a> repositório.
 
+Uma implementação no Netlify pode ser testada <a href="https://ebac-engenheiro-frontend-adv-react14.netlify.app" target="_blank">`aqui`</a>.
+
 <br>
 
 ## Instruções
@@ -214,6 +216,10 @@ Query Params:
 <br>
 
 ## Notas de versão
+
+### v1.0.1-240426
+
+- Atualização do README
 
 ### v1.0.0-240426
 
