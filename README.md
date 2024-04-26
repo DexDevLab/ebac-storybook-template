@@ -44,7 +44,7 @@ O objetivo deste repositório é comportar o material necessário para servir de
   - Adição do arquivo de licença (não declarado no repositório original)
   - Adição de assets para maior customização do projeto e melhoria da identidade da aplicação, agregando maior valor ao software como produto e promovendo uma melhor UX
   - Restruturação de toda a arquitetura do projeto, considerando a topologia necessária para a execução do Storybook e mantendo, de forma mais concisa possível, a utilização de arquitetura componentizada e atômica para os conteúdos de interface
-  - Criação de um handler de API que servirá para as negociações com o Backend e também servirá de controller para realizar a tratativa dos dados. O handler também comporta a instância <a href="https://axios-http.com/docs/intro">`Axios`</a> para as requisições
+  - Criação de um handler de API que servirá para as negociações com o Backend e também servirá de controller para realizar a tratativa dos dados. O handler também comporta a instância <a href="https://axios-http.com/docs/intro" target="_blank">`Axios`</a> para as requisições
   - Implementação de Backend de exemplo como mock para requisições
   - Separação de todas as requisições nos componentes e adaptação para comunicação apenas com o handler
   - Criação de rotas de Frontend para correta utilização das páginas, e viabilização da página de erro 404
@@ -60,7 +60,7 @@ O objetivo deste repositório é comportar o material necessário para servir de
 
 - Criação de Documentação Funcional - Foi solicitado que a Documentação Funcional fosse fornecida em documento Word, o qual pode ser baixado neste <a href="https://raw.githubusercontent.com/dexdevlab/ebac-storybook-template/main/resources/Documentacao_Funcional.docx" target="_blank" download='Documentação_Funcional.docx'>`link`</a>
 
-- Criação de Documentação de Layout usando o Storybook - A Documentação de Layout foi implementada no Chromatic e tem seu acesso através deste <a href="https://main--6621609505a9e64e34183ee5.chromatic.com">`link`</a>
+- Criação de Documentação de Layout usando o Storybook - A Documentação de Layout foi implementada no Chromatic e tem seu acesso através deste <a href="https://main--6621609505a9e64e34183ee5.chromatic.com" target="_blank">`link`</a>
 
 <br>
 
@@ -70,7 +70,7 @@ Como não foi encontrado um template ou repositório de origem com uma Aplicaç�
 
 Banco de Dados - Para a proposta deste projeto, não foi intencionada a utilização de um Banco de Dados próprio. As informações são salvas em um arquivo `JSON`, lidas e modificadas pelas requisições da API (ver abaixo na seção "Instruções").
 
-Backend local e Backend implementado - Toda vez que a aplicação estiver sendo executada em ambiente de desenvolvimento (`process.env.NODE_ENV`), a aplicação Frontend irá optar por se conectar ao Backend local, contido neste repositório e sendo executado por padrão na porta `4000`. Caso esta aplicação esteja sendo executada em um ambiente implementado, a mesma optará por realizar as requisições para uma implementação externa, cujos detalhes podem ser visualizados <a href="https://github.com/DexDevLab/ebac-storybook-template-backend">`neste`</a> repositório.
+Backend local e Backend implementado - Toda vez que a aplicação estiver sendo executada em ambiente de desenvolvimento (`process.env.NODE_ENV`), a aplicação Frontend irá optar por se conectar ao Backend local, contido neste repositório e sendo executado por padrão na porta `4000`. Caso esta aplicação esteja sendo executada em um ambiente implementado, a mesma optará por realizar as requisições para uma implementação externa, cujos detalhes podem ser visualizados <a href="https://github.com/DexDevLab/ebac-storybook-template-backend" target="_blank">`neste`</a> repositório.
 
 <br>
 
@@ -106,7 +106,7 @@ Execute `yarn build` e ocorrerá a compilação das aplicações React e Storybo
 
 #### Implementação no Chromatic
 
-Para implementar a build do Storybook no <a href="https://www.chromatic.com">`Chromatic`</a>, é necessário adicionar o token do projeto ao arquivo `chromatic.config.json`, com as seguintes especificações mínimas:
+Para implementar a build do Storybook no <a href="https://www.chromatic.com" target="_blank">`Chromatic`</a>, é necessário adicionar o token do projeto ao arquivo `chromatic.config.json`, com as seguintes especificações mínimas:
 
 ```json
 // ./chromatic.config.json
@@ -119,7 +119,7 @@ Para implementar a build do Storybook no <a href="https://www.chromatic.com">`Ch
 }
 ```
 
-A criação de um <a href="https://www.chromatic.com/docs/github-actions/">`Github Secret`</a> com o valor do token do Chromatic permite a execução do workflow para implantação do Storybook automaticamente.
+A criação de um <a href="https://www.chromatic.com/docs/github-actions/" target="_blank">`Github Secret`</a> com o valor do token do Chromatic permite a execução do workflow para implantação do Storybook automaticamente.
 
 ### Testes de API
 
@@ -214,6 +214,10 @@ Query Params:
 <br>
 
 ## Notas de versão
+
+### v1.0.0-240426
+
+- Atualização do README
 
 ### v0.2.3-240426
 
