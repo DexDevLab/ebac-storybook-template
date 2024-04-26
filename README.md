@@ -215,6 +215,10 @@ Query Params:
 
 ## Notas de versão
 
+### v0.2.3-240426
+
+- Alteração da lógica dos stories para promover uma listagem de resultados mais dinâmica e responsiva com a interação com o Backend.
+
 ### v0.2.2-240426
 
 - Testes de implementação

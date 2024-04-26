@@ -18,7 +18,7 @@ export default function Home() {
         setPokemonList(data);
       }
     };
-    setTimeout(request, 1500);
+    setTimeout(request, 1000);
   }, [updateList]);
 
   return (

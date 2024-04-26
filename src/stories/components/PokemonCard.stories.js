@@ -1,4 +1,5 @@
-import { fn } from "@storybook/test";
+import { useEffect, useState } from "react";
+import handler from "../../api/handler";
 import PokemonCard from "./PokemonCard";
 import "./pokemonCard.css";
 
@@ -67,49 +68,69 @@ export default {
         "Permite que o componente se comporte tal qual o componente em produção ao excluir um Pokémon. Utilizado apenas para testes visuais de componente",
     },
   },
-  args: {
-    id: 0,
-    name: "Farfetch'd",
-    pid: 83,
-    evolution: 1,
-    createPokemon: false,
-    setCreatePokemon: fn(),
-    updateList: 0,
-    setUpdateList: fn(),
-    allowAddPokemon: true,
-    allowEditPokemon: true,
-    allowRemovePokemon: true,
-  },
 };
 
 export const Default = {
-  render: ({ id, pid, name, evolution }) => {
-    const getPid = [];
-    switch (true) {
-      case pid.toString().length === 1:
-        getPid.push(`00${pid}`);
-        break;
-      case pid.toString().length === 2:
-        getPid.push(`0${pid}`);
-        break;
-      default:
-        getPid.push(`${pid}`);
-        break;
-    }
-    const imageUrl = `https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/${getPid[0]}.png`;
+  render: () => {
+    const [pokemonList, setPokemonList] = useState([]);
+    const [createPokemon, setCreatePokemon] = useState(false);
+    const [updateList, setUpdateList] = useState(0);
+    const [imageUrl, setImageUrl] = useState("");
+
+    useEffect(() => {
+      setPokemonList([]);
+      const request = async () => {
+        const { status, data, error } = await handler("GET");
+        if (error) {
+          console.log(`HTTP code: ${status}, Error: ${error}`);
+        } else {
+          setPokemonList(data);
+        }
+      };
+      setTimeout(request, 100);
+    }, [updateList]);
+
+    useEffect(() => {
+      if (pokemonList.length > 0) {
+        const getPid = [];
+        switch (true) {
+          case pokemonList[0].pid.toString().length === 1:
+            getPid.push(`00${pokemonList[0].pid}`);
+            break;
+          case pokemonList[0].pid.toString().length === 2:
+            getPid.push(`0${pokemonList[0].pid}`);
+            break;
+          default:
+            getPid.push(`${pokemonList[0].pid}`);
+            break;
+        }
+        setImageUrl(
+          `https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/${getPid[0]}.png`
+        );
+      }
+    }, [pokemonList]);
+
     return (
-      <main>
-        <div className="pokemon-container">
-          <PokemonCard
-            key={id}
-            id={id}
-            name={name}
-            pid={pid}
-            imageUrl={imageUrl}
-            evolution={evolution}
-          />
-        </div>
-      </main>
+      <>
+        {pokemonList.length > 0 && (
+          <main>
+            <div className="pokemon-container">
+              <PokemonCard
+                key={pokemonList[0]._id}
+                id={pokemonList[0]._id}
+                name={pokemonList[0].name}
+                pid={pokemonList[0].pid}
+                imageUrl={imageUrl}
+                evolution={pokemonList[0].evolution}
+                createPokemon={createPokemon}
+                setCreatePokemon={setCreatePokemon}
+                updateList={updateList}
+                setUpdateList={setUpdateList}
+              />
+            </div>
+          </main>
+        )}
+      </>
     );
   },
 };
@@ -135,44 +156,64 @@ export const ListPokemon = {
     allowEditPokemon: false,
     allowRemovePokemon: false,
   },
-  render: ({
-    id,
-    pid,
-    name,
-    evolution,
-    allowAddPokemon,
-    allowEditPokemon,
-    allowRemovePokemon,
-  }) => {
-    const getPid = [];
-    switch (true) {
-      case pid.toString().length === 1:
-        getPid.push(`00${pid}`);
-        break;
-      case pid.toString().length === 2:
-        getPid.push(`0${pid}`);
-        break;
-      default:
-        getPid.push(`${pid}`);
-        break;
-    }
-    const imageUrl = `https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/${getPid[0]}.png`;
+  render: ({ allowAddPokemon, allowEditPokemon, allowRemovePokemon }) => {
+    const [pokemonList, setPokemonList] = useState([]);
+    const [updateList, setUpdateList] = useState(0);
+    const [imageUrl, setImageUrl] = useState("");
+
+    useEffect(() => {
+      setPokemonList([]);
+      const request = async () => {
+        const { status, data, error } = await handler("GET");
+        if (error) {
+          console.log(`HTTP code: ${status}, Error: ${error}`);
+        } else {
+          setPokemonList(data);
+        }
+      };
+      setTimeout(request, 100);
+    }, [updateList]);
+
+    useEffect(() => {
+      if (pokemonList.length > 0) {
+        const getPid = [];
+        switch (true) {
+          case pokemonList[0].pid.toString().length === 1:
+            getPid.push(`00${pokemonList[0].pid}`);
+            break;
+          case pokemonList[0].pid.toString().length === 2:
+            getPid.push(`0${pokemonList[0].pid}`);
+            break;
+          default:
+            getPid.push(`${pokemonList[0].pid}`);
+            break;
+        }
+        setImageUrl(
+          `https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/${getPid[0]}.png`
+        );
+      }
+    }, [pokemonList]);
+
     return (
-      <main>
-        <div className="pokemon-container">
-          <PokemonCard
-            key={id}
-            id={id}
-            name={name}
-            pid={pid}
-            imageUrl={imageUrl}
-            evolution={evolution}
-            allowAddPokemon={allowAddPokemon}
-            allowEditPokemon={allowEditPokemon}
-            allowRemovePokemon={allowRemovePokemon}
-          />
-        </div>
-      </main>
+      <>
+        {pokemonList.length > 0 && (
+          <main>
+            <div className="pokemon-container">
+              <PokemonCard
+                key={pokemonList[0]._id}
+                id={pokemonList[0]._id}
+                name={pokemonList[0].name}
+                pid={pokemonList[0].pid}
+                imageUrl={imageUrl}
+                evolution={pokemonList[0].evolution}
+                allowAddPokemon={allowAddPokemon}
+                allowEditPokemon={allowEditPokemon}
+                allowRemovePokemon={allowRemovePokemon}
+              />
+            </div>
+          </main>
+        )}
+      </>
     );
   },
 };
@@ -200,31 +241,44 @@ export const AddPokemon = {
     allowRemovePokemon: false,
   },
   render: ({
-    id,
-    pid,
-    name,
-    evolution,
     createPokemon,
     allowAddPokemon,
     allowEditPokemon,
     allowRemovePokemon,
   }) => {
+    const [pokemonList, setPokemonList] = useState([]);
+    const [updateList, setUpdateList] = useState(0);
+    useEffect(() => {
+      setPokemonList([]);
+      const request = async () => {
+        const { status, data, error } = await handler("GET");
+        if (error) {
+          console.log(`HTTP code: ${status}, Error: ${error}`);
+        } else {
+          setPokemonList(data);
+        }
+      };
+      setTimeout(request, 100);
+    }, [updateList]);
     return (
-      <main>
-        <div className="pokemon-container">
-          <PokemonCard
-            key={id}
-            id={id}
-            name={name}
-            pid={pid}
-            evolution={evolution}
-            createPokemon={createPokemon}
-            allowAddPokemon={allowAddPokemon}
-            allowEditPokemon={allowEditPokemon}
-            allowRemovePokemon={allowRemovePokemon}
-          />
-        </div>
-      </main>
+      <>
+        {pokemonList.length > 0 && (
+          <main>
+            <div className="pokemon-container">
+              <PokemonCard
+                name={pokemonList[pokemonList.length - 1].name}
+                pid={pokemonList[pokemonList.length - 1].pid}
+                evolution={pokemonList[pokemonList.length - 1].evolution}
+                setUpdateList={setUpdateList}
+                createPokemon={createPokemon}
+                allowAddPokemon={allowAddPokemon}
+                allowEditPokemon={allowEditPokemon}
+                allowRemovePokemon={allowRemovePokemon}
+              />
+            </div>
+          </main>
+        )}
+      </>
     );
   },
 };
@@ -252,31 +306,45 @@ export const EditPokemon = {
     allowRemovePokemon: false,
   },
   render: ({
-    id,
-    pid,
-    name,
-    evolution,
     createPokemon,
     allowAddPokemon,
     allowEditPokemon,
     allowRemovePokemon,
   }) => {
+    const [pokemonList, setPokemonList] = useState([]);
+    const [updateList, setUpdateList] = useState(0);
+
+    useEffect(() => {
+      setPokemonList([]);
+      const request = async () => {
+        const { status, data, error } = await handler("GET");
+        if (error) {
+          console.log(`HTTP code: ${status}, Error: ${error}`);
+        } else {
+          setPokemonList(data);
+        }
+      };
+      setTimeout(request, 100);
+    }, [updateList]);
     return (
-      <main>
-        <div className="pokemon-container">
-          <PokemonCard
-            key={id}
-            id={id}
-            name={name}
-            pid={pid}
-            evolution={evolution}
-            createPokemon={createPokemon}
-            allowAddPokemon={allowAddPokemon}
-            allowEditPokemon={allowEditPokemon}
-            allowRemovePokemon={allowRemovePokemon}
-          />
-        </div>
-      </main>
+      <>
+        {pokemonList.length > 0 && (
+          <main>
+            <div className="pokemon-container">
+              <PokemonCard
+                id={pokemonList[0]._id}
+                name={pokemonList[0].name}
+                pid={pokemonList[0].pid}
+                evolution={pokemonList[0].evolution}
+                createPokemon={createPokemon}
+                allowAddPokemon={allowAddPokemon}
+                allowEditPokemon={allowEditPokemon}
+                allowRemovePokemon={allowRemovePokemon}
+              />
+            </div>
+          </main>
+        )}
+      </>
     );
   },
 };
@@ -302,44 +370,64 @@ export const RemovePokemon = {
     allowEditPokemon: false,
     allowRemovePokemon: true,
   },
-  render: ({
-    id,
-    pid,
-    name,
-    evolution,
-    allowAddPokemon,
-    allowEditPokemon,
-    allowRemovePokemon,
-  }) => {
-    const getPid = [];
-    switch (true) {
-      case pid.toString().length === 1:
-        getPid.push(`00${pid}`);
-        break;
-      case pid.toString().length === 2:
-        getPid.push(`0${pid}`);
-        break;
-      default:
-        getPid.push(`${pid}`);
-        break;
-    }
-    const imageUrl = `https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/${getPid[0]}.png`;
+  render: ({ allowAddPokemon, allowEditPokemon, allowRemovePokemon }) => {
+    const [pokemonList, setPokemonList] = useState([]);
+    const [updateList, setUpdateList] = useState(0);
+    const [imageUrl, setImageUrl] = useState("");
+
+    useEffect(() => {
+      setPokemonList([]);
+      const request = async () => {
+        const { status, data, error } = await handler("GET");
+        if (error) {
+          console.log(`HTTP code: ${status}, Error: ${error}`);
+        } else {
+          setPokemonList(data);
+        }
+      };
+      setTimeout(request, 100);
+    }, [updateList]);
+
+    useEffect(() => {
+      if (pokemonList.length > 0) {
+        const getPid = [];
+        switch (true) {
+          case pokemonList[0].pid.toString().length === 1:
+            getPid.push(`00${pokemonList[0].pid}`);
+            break;
+          case pokemonList[0].pid.toString().length === 2:
+            getPid.push(`0${pokemonList[0].pid}`);
+            break;
+          default:
+            getPid.push(`${pokemonList[0].pid}`);
+            break;
+        }
+        setImageUrl(
+          `https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/${getPid[0]}.png`
+        );
+      }
+    }, [pokemonList]);
+
     return (
-      <main>
-        <div className="pokemon-container">
-          <PokemonCard
-            key={id}
-            id={id}
-            name={name}
-            pid={pid}
-            imageUrl={imageUrl}
-            evolution={evolution}
-            allowAddPokemon={allowAddPokemon}
-            allowEditPokemon={allowEditPokemon}
-            allowRemovePokemon={allowRemovePokemon}
-          />
-        </div>
-      </main>
+      <>
+        {pokemonList.length > 0 && (
+          <main>
+            <div className="pokemon-container">
+              <PokemonCard
+                id={pokemonList[0]._id}
+                name={pokemonList[0].name}
+                pid={pokemonList[0].pid}
+                evolution={pokemonList[0].evolution}
+                imageUrl={imageUrl}
+                setUpdateList={setUpdateList}
+                allowAddPokemon={allowAddPokemon}
+                allowEditPokemon={allowEditPokemon}
+                allowRemovePokemon={allowRemovePokemon}
+              />
+            </div>
+          </main>
+        )}
+      </>
     );
   },
 };

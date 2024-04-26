@@ -32,11 +32,9 @@ export default function PokemonCard({
       await handler(fn, { query: { id }, body: body });
       switch (fn) {
         case "POST":
-          console.log("POST");
           setCreatePokemon && setCreatePokemon(false);
           break;
         case "PUT":
-          console.log("PUT");
           setCreatePokemon && setEditPokemon(false);
           break;
         default:

@@ -1,7 +1,7 @@
 {
   "name": "ebac-storybook-template",
   "description": "Template de Aplicação React com Storybook para exercício do Módulo 14 da Seção 'React: do Zero ao Pro' do curso 'Profissão: Engenheiro Front-End' da Instituição EBAC - Escola Britânica de Artes Criativas e Tecnologia",
-  "version": "v0.2.2-240426",
+  "version": "v0.2.3-240426",
   "license": "MIT",
   "private": true,
   "scripts": {
@@ -61,7 +61,6 @@
     "@storybook/addon-essentials": "^8.0.8",
     "@storybook/addon-interactions": "^8.0.8",
     "@storybook/addon-links": "^8.0.8",
-    "@storybook/addon-onboarding": "^8.0.8",
     "@storybook/blocks": "^8.0.8",
     "@storybook/manager-api": "^8.0.8",
     "@storybook/preset-create-react-app": "^8.0.8",
