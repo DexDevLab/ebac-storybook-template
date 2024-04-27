@@ -14,8 +14,8 @@
 <a href="https://expressjs.com/pt-br/"><img src="https://img.shields.io/badge/Express.js-404D59?logo=express" height="22" alt="ExpressJS"/></a>
 <br>
 <a href="https://storybook.js.org"><img src="https://img.shields.io/badge/Storybook-%23323330.svg?logo=storybook" height="22" alt="Storybook"/></a>&nbsp;
-<a href="https://main--6621609505a9e64e34183ee5.chromatic.com"><img src="https://img.shields.io/badge/Storybook on Chromatic-%23323330.svg?logo=chromatic" height="22" alt="Chromatic"/></a>
-<a href="https://www.netlify.com"><img src="https://img.shields.io/badge/Netlify-%23000000.svg?logo=netlify&logoColor=#00C7B7" height="22" alt="Netlify"/></a>
+<a href="https://main--6621609505a9e64e34183ee5.chromatic.com"><img src="https://img.shields.io/badge/Chromatic-%23323330.svg?logo=chromatic" height="22" alt="Chromatic"/></a>&nbsp;
+<a href="https://www.netlify.com"><img src="https://img.shields.io/badge/Netlify-%23323330.svg?logo=netlify&logoColor=#00C7B7" height="22" alt="Netlify"/></a>
 <br>
 <a href=""><img src="https://img.shields.io/badge/maintenance-as--is-yellow.svg" height="22" alt="Maintenance-as-is"/></a>&nbsp;
 <a href=""><img src="https://img.shields.io/github/last-commit/dexdevlab/ebac-storybook-template" height="22" alt="LastCommit"></a>&nbsp;
@@ -55,12 +55,13 @@ O objetivo deste repositório é comportar o material necessário para servir de
     - Componente de estilização apartado do componente da página, em arquivo js separado
   - Página `indexPage` refatorada:
     - Comunicação direta com o handler para requisições `GET` com adequada tratativa de erros
+    - Provisionamento automático da imagem do Pokémon baseado no número do Pokémon na Pokédex Oficial
 
 - Criação do README - Esta aplicação, bem como a aplicação Backend independente estão ambas documentadas corretamente com o README, atualizado e descritivo contendo as informações necessárias para o onboarding de um desenvolvedor.
 
 - Criação de Documentação Funcional - Foi solicitado que a Documentação Funcional fosse fornecida em documento Word, o qual pode ser baixado neste <a href="https://raw.githubusercontent.com/dexdevlab/ebac-storybook-template/main/resources/Documentacao_Funcional.docx" target="_blank" download='Documentação_Funcional.docx'>`link`</a>
 
-- Criação de Documentação de Layout usando o Storybook - A Documentação de Layout foi implementada no Chromatic e tem seu acesso através deste <a href="https://main--6621609505a9e64e34183ee5.chromatic.com" target="_blank">`link`</a>
+- Criação de Documentação de Layout usando o Storybook - A Documentação de Layout foi implementada no Netlify e tem seu acesso através deste <a href="https://ebac-engenheiro-frontend-adv-r14-sb.netlify.app/" target="_blank">`link`</a>
 
 <br>
 
@@ -90,7 +91,7 @@ git clone https://github.com/dexdevlab/ebac-storybook-template.git
 
 2 - Execute `yarn` para carregar as dependências.
 
-#### Testando a aplicação
+### Testando a aplicação
 
 Execute `yarn dev` do terminal dentro do diretório do projeto. A aplicação inicializará as seguintes instâncias:
 
@@ -98,15 +99,15 @@ Execute `yarn dev` do terminal dentro do diretório do projeto. A aplicação in
 2 - Aplicação Express JS (Backend API), na porta `4000`<br>
 3 - Storybook Preview, na porta `6006`
 
-#### Realizando testes
+### Realizando testes
 
 Execute `yarn test` do terminal dentro do diretório do projeto. Um teste será performado.
 
-#### Compilando a aplicação
+### Compilando a aplicação
 
 Execute `yarn build` e ocorrerá a compilação das aplicações React e Storybook.
 
-#### Implementação no Chromatic
+### Implementação no Chromatic
 
 Para implementar a build do Storybook no <a href="https://www.chromatic.com" target="_blank">`Chromatic`</a>, é necessário adicionar o token do projeto ao arquivo `chromatic.config.json`, com as seguintes especificações mínimas:
 
@@ -122,6 +123,19 @@ Para implementar a build do Storybook no <a href="https://www.chromatic.com" tar
 ```
 
 A criação de um <a href="https://www.chromatic.com/docs/github-actions/" target="_blank">`Github Secret`</a> com o valor do token do Chromatic permite a execução do workflow para implantação do Storybook automaticamente.
+
+### Implementação no Netlify
+
+1 - Com o repositório clonado, crie um site novo baseado em um repositório do Github<br>
+
+2 - Escolha o seu repositório e configure as seguintes especificações:
+
+- Para implementar a Aplicação React:
+  - Build Command: `yarn build:react`
+  - Publish Directory: `build`
+- Para implementar o Storybook:
+  - Build Command: `yarn build:storybook`
+  - Publish Directory: `storybook-static`
 
 ### Testes de API
 
@@ -216,6 +230,12 @@ Query Params:
 <br>
 
 ## Notas de versão
+
+### v1.1.0-240427
+
+- Atualização do README
+- Implementação do Storybook via Netlify
+- Atualização da Documentação
 
 ### v1.0.1-240426
 
